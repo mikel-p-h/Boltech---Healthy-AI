@@ -10,6 +10,7 @@ import com.vaadin.flow.component.Key;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
+import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
@@ -22,7 +23,6 @@ import com.vaadin.flow.component.messages.MessageInput;
 import com.vaadin.flow.component.messages.MessageList;
 import com.vaadin.flow.component.messages.MessageListItem;
 import com.vaadin.flow.component.orderedlayout.Scroller;
-import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.sidenav.SideNav;
 import com.vaadin.flow.component.sidenav.SideNavItem;
 import com.vaadin.flow.theme.lumo.LumoUtility;
@@ -31,45 +31,40 @@ import com.vaadin.flow.theme.lumo.LumoUtility;
 @Route("")
 public class MainView extends AppLayout {
 
+    private ChatComponent chat;
+
     public MainView() {
+        //Margins of the content
+        VerticalLayout leftmargin = new VerticalLayout();
+        leftmargin.setWidth("10%");
+        VerticalLayout rightmargin = new VerticalLayout();
+        rightmargin.setWidth("10%");
+
+        //Menu de hamburguesa
         DrawerToggle toggle = new DrawerToggle();
  
         H1 title = new H1("Boltech - Primeros auxilios");
         title.getStyle().set("font-size", "var(--lumo-font-size-l)")
                 .set("margin", "0");
 
+        //Menu desplegado de la hamburguesa
         SideNav nav = getSideNav();
-
         Scroller scroller = new Scroller(nav);
         scroller.setClassName(LumoUtility.Padding.SMALL);
-
-        MessageList list = new MessageList();
-        MessageInput input = new MessageInput();
         
-        input.addSubmitListener(submitEvent -> {
-            MessageListItem newMessage = new MessageListItem(
-                    submitEvent.getValue(), Instant.now(), "Milla Sting");
-            newMessage.setUserColorIndex(3);
-            List<MessageListItem> items = new ArrayList<>(list.getItems());
-            items.add(newMessage);
-            list.setItems(items);
-        });
-
-        //Person person = DataService.getPeople(1).get(0);
-        MessageListItem message1 = new MessageListItem();
-        message1.setUserColorIndex(1);
-        MessageListItem message2 = new MessageListItem();
-        message2.setUserColorIndex(2);
-        list.setItems(message1, message2);
-
-        VerticalLayout chatLayout = new VerticalLayout(list, input);
-        chatLayout.setHeight("90%");
-        chatLayout.setWidthFull();
-        chatLayout.expand(list);
-        setContent(chatLayout);
-
+        //Añadimos los menus a la vista
         addToDrawer(scroller);
         addToNavbar(toggle, title);
+        
+        //Generamos el chat
+        chat = new ChatComponent();
+
+        //Añadimos a un horizontal layout el chat y los margenes
+        HorizontalLayout mainLayout = new HorizontalLayout(leftmargin, chat, rightmargin);
+        mainLayout.expand(chat);
+        mainLayout.setSizeFull();
+
+        setContent(mainLayout);
     }
 
     private SideNav getSideNav() {
@@ -91,6 +86,4 @@ public class MainView extends AppLayout {
                 );
         return sideNav;
     }
-    //Prueba
-
 }

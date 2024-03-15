@@ -10,13 +10,13 @@ import com.vaadin.flow.component.sidenav.SideNavItem;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.theme.lumo.LumoUtility;
 
-@Route("accesibilidad")
+@Route("llama")
 public class Accesibilidad extends AppLayout {
 
     public Accesibilidad() {
         DrawerToggle toggle = new DrawerToggle();
 
-        H1 title = new H1("Boltech - Accesibilidad");
+        H1 title = new H1("Boltech - Asistente - Llama 2");
         title.getStyle().set("font-size", "var(--lumo-font-size-l)")
                 .set("margin", "0");
 
@@ -32,10 +32,10 @@ public class Accesibilidad extends AppLayout {
     private SideNav getSideNav() {
         SideNav sideNav = new SideNav();
         sideNav.addItem(
-                new SideNavItem("Primeros auxilios", "/",
-                VaadinIcon.AMBULANCE.create()),
-                new SideNavItem("Accesibilidad", "/accesibilidad", 
-                VaadinIcon.COG.create())
+            new SideNavItem("Asistente - ChatGPT", "/",
+            VaadinIcon.AMBULANCE.create()),
+            new SideNavItem("Asistente - Llama 2", "/llama", 
+            VaadinIcon.NURSE.create())
                 // ,    
                 // new SideNavItem("Products", "/products",
                 // VaadinIcon.PACKAGE.create()),

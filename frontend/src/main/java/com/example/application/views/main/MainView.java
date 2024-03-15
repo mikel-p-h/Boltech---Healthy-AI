@@ -30,7 +30,7 @@ public class MainView extends AppLayout {
         //Menu de hamburguesa
         DrawerToggle toggle = new DrawerToggle();
  
-        H1 title = new H1("Boltech - Primeros auxilios");
+        H1 title = new H1("Boltech - Asistente - ChatGPT");
         title.getStyle().set("font-size", "var(--lumo-font-size-l)")
                 .set("margin", "0");
 
@@ -61,10 +61,10 @@ public class MainView extends AppLayout {
     private SideNav getSideNav() {
         SideNav sideNav = new SideNav();
         sideNav.addItem(
-                new SideNavItem("Primeros auxilios", "/",
+                new SideNavItem("Asistente - ChatGPT", "/",
                 VaadinIcon.AMBULANCE.create()),
-                new SideNavItem("Accesibilidad", "/accesibilidad", 
-                VaadinIcon.COG.create())
+                new SideNavItem("Asistente - Llama 2", "/llama", 
+                VaadinIcon.NURSE.create())
                 // ,    
                 // new SideNavItem("Products", "/products",
                 // VaadinIcon.PACKAGE.create()),

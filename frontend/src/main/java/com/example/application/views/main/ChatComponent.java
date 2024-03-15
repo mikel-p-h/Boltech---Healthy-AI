@@ -7,16 +7,14 @@ import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.messages.MessageList;
 import com.vaadin.flow.component.messages.MessageListItem;
-import com.vaadin.flow.component.notification.NotificationVariant;
 
+import java.io.IOException;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 import com.vaadin.flow.component.textfield.TextArea;
-import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.theme.lumo.LumoUtility;
 import com.vaadin.flow.component.icon.Icon;
-import com.vaadin.flow.component.notification.Notification;
 
 public class ChatComponent extends VerticalLayout {
 
@@ -115,11 +113,32 @@ public class ChatComponent extends VerticalLayout {
             return;
         }
 
-        MessageListItem newMessage = new MessageListItem(message, Instant.now(), "YO");
+        addMessageToList(message, "YO");
+        input.clear();
+
+        // Crear un objeto Message con el mensaje recibido
+        Message messageObj = new Message(message);
+
+        try {
+            // Enviar el mensaje al backend utilizando DataService
+            String responseMessage = DataService.sendMessageToBackend(messageObj);
+
+            // Agregar el mensaje de respuesta a la lista
+            addMessageToList(responseMessage, "ChatGPT");
+        } catch (IOException | InterruptedException e) {
+            e.printStackTrace();
+            
+            // Agregar un mensaje de error a la lista en caso de error
+            addMessageToList("Error al enviar el mensaje: " + e.getMessage(), "Error");
+        }
+    }
+    
+    private void addMessageToList(String message, String sender) {
+        MessageListItem newMessage = new MessageListItem(message, Instant.now(), sender);
         newMessage.setUserColorIndex(3);
         List<MessageListItem> items = new ArrayList<>(list.getItems());
         items.add(newMessage);
         list.setItems(items);
-        input.clear();
     }
+    
 }

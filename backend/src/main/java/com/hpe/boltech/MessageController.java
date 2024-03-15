@@ -14,7 +14,7 @@ public class MessageController {
     public String receiveMessage(@RequestBody String message) {
         // Enviar el mensaje a ChatGPT y obtener la respuesta
         String response = ChatGPTClient.getChatGPTResponse(message);
-        System.out.println("Respuesta de ChatGPT: " + response);
+
         // Procesar la respuesta de la API de ChatGPT
         String content = extractContentFromResponse(response);
 

@@ -124,7 +124,7 @@ public class ChatComponent extends VerticalLayout {
             String responseMessage = DataService.sendMessageToBackend(messageObj);
 
             // Agregar el mensaje de respuesta a la lista
-            addMessageToList(responseMessage, "ChatGPT");
+            addMessageToListGPT(responseMessage, "ChatGPT");
         } catch (IOException | InterruptedException e) {
             e.printStackTrace();
             
@@ -136,6 +136,14 @@ public class ChatComponent extends VerticalLayout {
     private void addMessageToList(String message, String sender) {
         MessageListItem newMessage = new MessageListItem(message, Instant.now(), sender);
         newMessage.setUserColorIndex(3);
+        List<MessageListItem> items = new ArrayList<>(list.getItems());
+        items.add(newMessage);
+        list.setItems(items);
+    }
+
+    private void addMessageToListGPT(String message, String sender) {
+        MessageListItem newMessage = new MessageListItem(message, Instant.now(), sender);
+        newMessage.setUserColorIndex(1);
         List<MessageListItem> items = new ArrayList<>(list.getItems());
         items.add(newMessage);
         list.setItems(items);

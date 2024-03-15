@@ -72,7 +72,7 @@ public class ChatComponent extends VerticalLayout {
         doctorIconLeft.setSize("2.5em");
 
         //Aviso herramienta complementaria
-        Span consejoTexto = new Span("En caso de emergencia grave, busca ayuda médica profesional inmediatamente, llama al 112");
+        Span consejoTexto = new Span("En caso de emergencia grave, busque ayuda médica profesional inmediatamente, llame al 112");
         consejoTexto.getStyle().set("font-size", "1.8em");
 
         // Icono de advertencia a la derecha

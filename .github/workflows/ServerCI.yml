@@ -1,0 +1,49 @@
+name: Server CI
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - uses: actions/setup-java@v3
+      with:
+        distribution: 'corretto' # See 'Supported distributions' for available options
+        java-version: '17'
+
+    - name: Build Server with Maven
+      run: mvn -B package --file Server/backend/pom.xml
+      
+    - name: Upload JAR file as an artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: server-jar
+        path: Server/backend/target/backend.jar 
+      
+  deploy:
+    needs: build
+    name: Deploy app
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Download JAR file
+        uses: actions/download-artifact@v2
+        with:
+          name: server-jar
+      - name: Move JAR file to target directory
+        run: |
+          ls -alh
+          mv *.jar Server/backend/target/backend.jar
+      - uses: superfly/flyctl-actions/setup-flyctl@master
+      - run:  |
+          cd Server
+          ls -alh
+          flyctl deploy --remote-only -a springboot-server-gr2
+        env:
+          FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}

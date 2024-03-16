@@ -55,6 +55,7 @@ public class ChatComponent extends VerticalLayout {
         //Aviso herramienta complementaria
         Span avisoTexto = new Span("Esto es una herramienta complementaria y no sustitutiva de la atención médica profesional");
         avisoTexto.getStyle().set("font-size", "22px");
+
     
         // Icono de advertencia a la derecha
         Icon warningIconRight = VaadinIcon.WARNING.create();
@@ -100,7 +101,7 @@ public class ChatComponent extends VerticalLayout {
         consejoLayout.addClassName("consejo");
         consejoLayout.setPadding(true);
         avisoTexto.addClassName("textoArriba");
-
+        consejoTexto.addClassName("textoAbajo");
 
 
         //Layout horizontal para aviso

@@ -10,3 +10,13 @@
 .textoArriba{
     font-weight: bold;
 }
+
+@media (max-width: 1600px) {
+    .textoArriba{
+        font-size: 16px;
+    }
+    .textoAbajo{
+        font-size: 14px;
+    }
+}
+

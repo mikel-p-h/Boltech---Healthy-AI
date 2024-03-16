@@ -17,7 +17,7 @@ import com.vaadin.flow.theme.lumo.LumoUtility;
 @PageTitle("Main")
 @Route("")
 public class MainView extends AppLayout {
-
+    
     private ChatComponent chat;
 
     public MainView() {
@@ -52,6 +52,8 @@ public class MainView extends AppLayout {
 
         //Añadimos a un horizontal layout el chat y los margenes
         HorizontalLayout mainLayout = new HorizontalLayout(leftmargin, chat, rightmargin);
+        mainLayout.setPadding(true);
+        mainLayout.setSpacing(true);
         mainLayout.expand(chat);
         mainLayout.setSizeFull();
 

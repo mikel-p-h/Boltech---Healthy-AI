@@ -1,0 +1,12 @@
+.warning{
+    font-weight: bold;
+}
+.consejo{
+    background-color: #f9d99984;
+    
+    border-radius: 25px;
+    border: 2px solid #fac55c;
+}
+.textoArriba{
+    font-weight: bold;
+}

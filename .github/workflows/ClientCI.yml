@@ -24,7 +24,7 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: mytodo-jar
-        path: Client/frontend/target/frontend.jar
+        path: Client/frontend/target/mytodo-1.0-SNAPSHOT.jar
       
   deploy:
     needs: build
@@ -39,7 +39,7 @@ jobs:
       - name: Move JAR file to target directory
         run: |
           ls -alh
-          mv *.jar Client/frontend/target/frontend.jar
+          mv *.jar Client/frontend/target/mytodo-1.0-SNAPSHOT.jar
       - uses: superfly/flyctl-actions/setup-flyctl@master
       - run: |
           cd Client

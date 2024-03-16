@@ -1,3 +1,3 @@
 FROM amazoncorretto:17
-COPY Client/frontend/target/frontend.jar frontend.jar
-ENTRYPOINT ["java", "-jar", "frontend.jar"]
+COPY frontend/target/mytodo-1.0-SNAPSHOT.jar mytodo-1.0-SNAPSHOT.jar
+ENTRYPOINT ["java", "-jar", "mytodo-1.0-SNAPSHOT.jar"]

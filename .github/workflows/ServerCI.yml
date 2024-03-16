@@ -24,7 +24,7 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: server-jar
-        path: Server/backend/target/backend.jar 
+        path: Server/backend/target/boltech-0.0.1-SNAPSHOT.jar
       
   deploy:
     needs: build
@@ -39,7 +39,7 @@ jobs:
       - name: Move JAR file to target directory
         run: |
           ls -alh
-          mv *.jar Server/backend/target/backend.jar
+          mv *.jar Server/backend/target/boltech-0.0.1-SNAPSHOT.jar
       - uses: superfly/flyctl-actions/setup-flyctl@master
       - run:  |
           cd Server

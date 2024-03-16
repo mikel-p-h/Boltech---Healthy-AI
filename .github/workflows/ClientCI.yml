@@ -35,7 +35,7 @@ jobs:
       - name: Download JAR file
         uses: actions/download-artifact@v2
         with:
-          name: frontend-jar
+          name: mytodo-jar
       - name: Move JAR file to target directory
         run: |
           ls -alh
@@ -44,7 +44,7 @@ jobs:
       - run: |
           cd Client
           ls -alh
-          flyctl deploy --remote-only -a vaadinclient-gr2
+          flyctl deploy --remote-only -a boltech-first-aid
           
 
 

@@ -14,7 +14,7 @@ import com.vaadin.flow.component.sidenav.SideNav;
 import com.vaadin.flow.component.sidenav.SideNavItem;
 import com.vaadin.flow.theme.lumo.LumoUtility;
 
-@PageTitle("Main")
+@PageTitle("Boltech First Aid")
 @Route("")
 public class MainView extends AppLayout {
     

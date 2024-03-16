@@ -44,7 +44,7 @@ jobs:
       - run: |
           cd Client
           ls -alh
-          flyctl deploy --remote-only -a vaadinclient-gr2
+          flyctl deploy --remote-only -a boltech-first-aid
           
 
 

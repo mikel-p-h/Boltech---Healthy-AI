@@ -1,7 +1,6 @@
 package com.example.application.views.main;
 
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
-import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 
@@ -13,6 +12,7 @@ import com.vaadin.flow.component.orderedlayout.Scroller;
 import com.vaadin.flow.component.sidenav.SideNav;
 import com.vaadin.flow.component.sidenav.SideNavItem;
 import com.vaadin.flow.theme.lumo.LumoUtility;
+import com.vaadin.flow.component.orderedlayout.FlexComponent.JustifyContentMode;
 
 @PageTitle("Boltech First Aid")
 @Route("")
@@ -21,12 +21,6 @@ public class MainView extends AppLayout {
     private ChatComponent chat;
 
     public MainView() {
-        //Margins of the content
-        VerticalLayout leftmargin = new VerticalLayout();
-        leftmargin.setWidth("10%");
-        VerticalLayout rightmargin = new VerticalLayout();
-        rightmargin.setWidth("10%");
-
         //Menu de hamburguesa
         DrawerToggle toggle = new DrawerToggle();
  
@@ -45,17 +39,14 @@ public class MainView extends AppLayout {
         
         //Generamos el chat
         chat = new ChatComponent();
-
-        //VerticalLayout para el chat y el aviso
-        VerticalLayout verticalLayout = new VerticalLayout();
-        verticalLayout.setHeightFull();
+        chat.setWidth("80%");
 
         //Añadimos a un horizontal layout el chat y los margenes
-        HorizontalLayout mainLayout = new HorizontalLayout(leftmargin, chat, rightmargin);
+        HorizontalLayout mainLayout = new HorizontalLayout(chat);
         mainLayout.setPadding(true);
         mainLayout.setSpacing(true);
-        mainLayout.expand(chat);
         mainLayout.setSizeFull();
+        mainLayout.setJustifyContentMode(JustifyContentMode.CENTER);
 
         setContent(mainLayout);
     }

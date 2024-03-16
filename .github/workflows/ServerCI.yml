@@ -14,7 +14,7 @@ jobs:
     - uses: actions/checkout@v3
     - uses: actions/setup-java@v3
       with:
-        distribution: 'corretto'
+        distribution: 'corretto' # See 'Supported distributions' for available options
         java-version: '17'
 
     - name: Build Server with Maven
@@ -36,11 +36,10 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: server-jar
-          path: Server/backend/target/
       - name: Move JAR file to target directory
         run: |
-          ls -alh Server/backend/target/
-          mv Server/backend/target/*.jar Server/backend/target/backend.jar
+          ls -alh
+          mv *.jar Server/backend/target/backend.jar
       - uses: superfly/flyctl-actions/setup-flyctl@master
       - run:  |
           cd Server

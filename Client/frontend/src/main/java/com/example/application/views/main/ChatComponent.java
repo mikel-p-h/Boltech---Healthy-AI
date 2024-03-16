@@ -53,8 +53,7 @@ public class ChatComponent extends VerticalLayout {
         warningIconLeft.setSize("5vw");
 
         //Aviso herramienta complementaria
-        Span avisoTexto = new Span("Esto es una herramienta complementaria y no sustitutiva de la atención médica profesional");
-        avisoTexto.getStyle().set("font-size", "22px");
+        Span avisoTexto = new Span("Esto es una herramienta complementaria");
 
     
         // Icono de advertencia a la derecha
@@ -77,7 +76,6 @@ public class ChatComponent extends VerticalLayout {
 
         //Aviso herramienta complementaria
         Span consejoTexto = new Span("En caso de emergencia grave, busque ayuda médica profesional inmediatamente, llame al 112");
-        consejoTexto.getStyle().set("font-size", "20px");
         VerticalLayout consejoLayout2 = new VerticalLayout(avisoTexto, consejoTexto);
         
         // Icono de advertencia a la derecha

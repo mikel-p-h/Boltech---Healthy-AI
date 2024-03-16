@@ -9,14 +9,18 @@
 }
 .textoArriba{
     font-weight: bold;
+    font-size: 22px;
+}
+.textoAbajo{
+    font-size: 20px;
 }
 
-@media (max-width: 1600px) {
-    .textoArriba{
-        font-size: 16px;
+@media screen and (max-width: 1450px) {
+      .textoArriba{
+        font-size: 16px !important;
     }
     .textoAbajo{
-        font-size: 14px;
+        font-size: 14px !important;
     }
 }
 

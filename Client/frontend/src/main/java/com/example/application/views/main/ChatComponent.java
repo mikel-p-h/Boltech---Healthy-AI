@@ -24,6 +24,7 @@ public class ChatComponent extends VerticalLayout {
 
     public ChatComponent() {
         setSpacing(true);
+
         //Cuadro para los chats
         list = new MessageList();
         list.setWidthFull();
@@ -46,6 +47,11 @@ public class ChatComponent extends VerticalLayout {
         chatLayout.setFlexGrow(1, input);
         chatLayout.setFlexGrow(0, sendButton);
         chatLayout.add(input, sendButton);
+        
+        //Layout vertical para el chat
+        VerticalLayout verticalLayout = new VerticalLayout();
+        verticalLayout.add(list, chatLayout);
+        verticalLayout.setHeight("85%");
 
         // Icono de advertencia a la izquierda
         Icon warningIconLeft = VaadinIcon.WARNING.create();
@@ -54,74 +60,40 @@ public class ChatComponent extends VerticalLayout {
 
         //Aviso herramienta complementaria
         Span avisoTexto = new Span("Esto es una herramienta complementaria");
+        avisoTexto.addClassName("textoArriba");
+        Span consejoTexto = new Span("En caso de emergencia grave, llame al 112");
+        consejoTexto.addClassName("textoAbajo");
+        
+        //Layout para el mensaje de aviso
+        VerticalLayout consejoLayout = new VerticalLayout(avisoTexto, consejoTexto);
+        consejoLayout.setAlignItems(Alignment.CENTER);
+        consejoLayout.setJustifyContentMode(JustifyContentMode.CENTER);
 
-    
         // Icono de advertencia a la derecha
         Icon warningIconRight = VaadinIcon.WARNING.create();
         warningIconRight.setColor("red");
         warningIconRight.setSize("5vw");
 
-        //Layout horizontal para el aviso herramienta complementaria
-        HorizontalLayout avisoLayoutHerramienta = new HorizontalLayout();
-        avisoLayoutHerramienta.setWidthFull();
-        avisoLayoutHerramienta.setHeight("50%");
-        //avisoLayoutHerramienta.add(warningIconLeft, avisoTexto, warningIconRight);
-        avisoLayoutHerramienta.setAlignItems(Alignment.CENTER);
-        avisoLayoutHerramienta.setJustifyContentMode(JustifyContentMode.CENTER);
-        avisoLayoutHerramienta.setClassName("warning");
-
-        // Icono de advertencia a la izquierda
-        Icon doctorIconLeft = VaadinIcon.DOCTOR.create();
-        doctorIconLeft.setSize("20px");
-
-        //Aviso herramienta complementaria
-        Span consejoTexto = new Span("En caso de emergencia grave, llame al 112");
-        VerticalLayout consejoLayout2 = new VerticalLayout(avisoTexto, consejoTexto);
-        
-        // Icono de advertencia a la derecha
-        Icon doctorIconRight = VaadinIcon.DOCTOR.create();
-        doctorIconRight.setSize("1.5em");
-
-        //Layout horizontal para el aviso herramienta complementaria
-        HorizontalLayout consejoLayout = new HorizontalLayout();
-        consejoLayout.setWidthFull();
-        consejoLayout2.setWidthFull();
-        consejoLayout.add(warningIconLeft, consejoLayout2, warningIconRight);
-
-        consejoLayout2.setAlignItems(Alignment.CENTER);
-        consejoLayout.setAlignItems(Alignment.CENTER);
-        consejoLayout.setJustifyContentMode(JustifyContentMode.CENTER);
-        consejoLayout2.setJustifyContentMode(JustifyContentMode.CENTER);
-
-        /*
-         * Temporal
-         */
-        consejoLayout.addClassName("consejo");
-        consejoLayout.setPadding(true);
-        avisoTexto.addClassName("textoArriba");
-        consejoTexto.addClassName("textoAbajo");
-
+        //Layout horizontal conjunto de los warnings y el aviso
+        HorizontalLayout layoutConsejoWarning = new HorizontalLayout();
+        layoutConsejoWarning.setWidthFull();
+        layoutConsejoWarning.add(warningIconLeft, consejoLayout, warningIconRight);
+        layoutConsejoWarning.setAlignItems(Alignment.CENTER);
+        layoutConsejoWarning.setJustifyContentMode(JustifyContentMode.CENTER);
+        layoutConsejoWarning.addClassName("consejo");
+        layoutConsejoWarning.setPadding(true);
 
         //Layout horizontal para aviso
         VerticalLayout avisoLayout = new VerticalLayout();
-        avisoLayout.setWidthFull();
         avisoLayout.setHeight("15%");
-        // avisoLayout.getStyle().set("background-color", "whitesmoke");
         avisoLayout.setJustifyContentMode(JustifyContentMode.CENTER);
-        avisoLayout.add(consejoLayout);
-
-        //Layout vertical para el chat
-        VerticalLayout verticalLayout = new VerticalLayout();
-        verticalLayout.add(list, chatLayout);
-        verticalLayout.setHeight("85%");
+        avisoLayout.add(layoutConsejoWarning);
 
         //Layout vertical para el chat y el aviso
-        VerticalLayout verticalLayout2 = new VerticalLayout();
-        verticalLayout2.add(avisoLayout, verticalLayout);
-        verticalLayout2.setHeightFull();
-        verticalLayout2.setWidthFull();
-        verticalLayout2.setAlignItems(Alignment.END);
-        add(verticalLayout2);
+        VerticalLayout layoutVerticalConjunto = new VerticalLayout();
+        layoutVerticalConjunto.add(avisoLayout, verticalLayout);
+        layoutVerticalConjunto.setHeightFull();
+        add(layoutVerticalConjunto);
     }
 
     private void sendMessage(String message) {
@@ -163,10 +135,5 @@ public class ChatComponent extends VerticalLayout {
         List<MessageListItem> items = new ArrayList<>(list.getItems());
         items.add(newMessage);
         list.setItems(items);
-    }
-
-    public void configHorizontalLayout() {
-       
-    }
-    
+    }    
 }

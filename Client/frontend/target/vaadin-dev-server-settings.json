@@ -1,0 +1,17 @@
+{
+  "frontendFolder": "/Users/javiermanchomajadas/Desktop/HPE/HPE/Client/frontend/frontend",
+  "themeFolder": "themes",
+  "themeResourceFolder": "/Users/javiermanchomajadas/Desktop/HPE/HPE/Client/frontend/frontend/generated/jar-resources",
+  "staticOutput": "target/classes/META-INF/VAADIN/webapp/VAADIN/static",
+  "generatedFolder": "generated",
+  "statsOutput": "target/classes/META-INF/VAADIN/webapp/../config/",
+  "frontendBundleOutput": "target/classes/META-INF/VAADIN/webapp/",
+  "devBundleOutput": "/Users/javiermanchomajadas/Desktop/HPE/HPE/Client/frontend/target/dev-bundle/webapp",
+  "devBundleStatsOutput": "/Users/javiermanchomajadas/Desktop/HPE/HPE/Client/frontend/target/dev-bundle/config",
+  "jarResourcesFolder": "/Users/javiermanchomajadas/Desktop/HPE/HPE/Client/frontend/frontend/generated/jar-resources",
+  "themeName": "",
+  "clientServiceWorkerSource": "/Users/javiermanchomajadas/Desktop/HPE/HPE/Client/frontend/target/sw.ts",
+  "pwaEnabled": false,
+  "offlineEnabled": false,
+  "offlinePath": "'offline.html'"
+}

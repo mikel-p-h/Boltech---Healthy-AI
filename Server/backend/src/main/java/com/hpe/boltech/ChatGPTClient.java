@@ -13,24 +13,29 @@ import com.google.gson.JsonObject;
 public class ChatGPTClient {
 
     private static final String CHATGPT_API_URL = "https://api.openai.com/v1/chat/completions";
-    private static final String API_KEY = "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";
+    private static final String API_KEY = "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";
 
-    public static String getChatGPTResponse(String message) {
+    public static String getChatGPTResponse(String userMessage) {
         try {
             HttpClient client = HttpClient.newHttpClient();
 
             // Construir el cuerpo de la solicitud
             JsonObject requestBody = new JsonObject();
-            requestBody.addProperty("model", "gpt-3.5-turbo-0613");
+            requestBody.addProperty("model", "ft:gpt-3.5-turbo-0613:personal:boltech:93TKf2Ee");
             
-            // Construir el objeto de mensajes
-            JsonObject messageObject = new JsonObject();
-            messageObject.addProperty("role", "user");
-            messageObject.addProperty("content", message);
+            // Construir los objetos de mensajes
+            JsonObject systemMessage = new JsonObject();
+            systemMessage.addProperty("role", "system");
+            systemMessage.addProperty("content", "Eres un experto en primeros auxilios intentando ayudar a una persona que no sabe cómo actuar frente a una situación de primeros auxilios. Vas a decirle los pasos a seguir frente a la correspondiente emergencia");
 
-            // Agregar el objeto de mensaje al arreglo de mensajes
+            JsonObject userMessageObject = new JsonObject();
+            userMessageObject.addProperty("role", "user");
+            userMessageObject.addProperty("content", userMessage);
+
+            // Agregar los objetos de mensaje al arreglo de mensajes
             JsonArray messagesArray = new JsonArray();
-            messagesArray.add(messageObject);
+            messagesArray.add(systemMessage);
+            messagesArray.add(userMessageObject);
 
             requestBody.add("messages", messagesArray);
             requestBody.addProperty("max_tokens", 1000); // Número máximo de tokens para la respuesta

@@ -39,7 +39,7 @@ public class MainView extends AppLayout {
         
         //Generamos el chat
         chat = new ChatComponent();
-        chat.setWidth("80%");
+        chat.addClassName("chatMediaQuery");
 
         //Añadimos a un horizontal layout el chat y los margenes
         HorizontalLayout mainLayout = new HorizontalLayout(chat);

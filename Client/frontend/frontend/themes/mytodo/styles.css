@@ -3,20 +3,24 @@
 }
 .consejo{
     background-color: #f9d99984;
-    
     border-radius: 25px;
     border: 2px solid #fac55c;
 }
 .textoArriba{
     font-weight: bold;
     font-size: 22px;
+    text-align: center;
 }
 .textoAbajo{
     font-size: 20px;
+    text-align: center;
+}
+.chatMediaQuery{
+    width: 80% !important;
 }
 
 @media screen and (max-width: 1450px) {
-      .textoArriba{
+    .textoArriba{
         font-size: 16px !important;
     }
     .textoAbajo{
@@ -24,3 +28,20 @@
     }
 }
 
+@media screen and (max-width: 1000px) {
+    .chatMediaQuery{
+        width: 100% !important;
+    }
+    .textoArriba{
+        font-size: 14px !important;
+    }
+    .textoAbajo{
+        font-size: 12px !important;
+    }
+}
+
+@media screen and (max-width: 550px) {
+    .iconRightMediaQuery{
+        display: none !important;
+    }
+}

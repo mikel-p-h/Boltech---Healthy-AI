@@ -73,6 +73,7 @@ public class ChatComponent extends VerticalLayout {
         Icon warningIconRight = VaadinIcon.WARNING.create();
         warningIconRight.setColor("red");
         warningIconRight.setSize("5vw");
+        warningIconRight.addClassName("iconRightMediaQuery");
 
         //Layout horizontal conjunto de los warnings y el aviso
         HorizontalLayout layoutConsejoWarning = new HorizontalLayout();

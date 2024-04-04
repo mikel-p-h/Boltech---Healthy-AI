@@ -34,11 +34,13 @@ public class ChatComponent extends VerticalLayout {
         
         //Textfield para el mensaje del usuario
         input = new TextArea();
+        input.addClassName("inputChat");
         input.setHeight("100%");
 
         //Botón para enviar el mensaje
         sendButton = new Button("Enviar", VaadinIcon.PAPERPLANE.create());
         sendButton.addClickListener(clickEvent -> sendMessage(input.getValue()));
+        sendButton.addClassName("sendButton");
         sendButton.setHeight("100%");
         
         //Layout para el textfield y su botón
@@ -46,11 +48,14 @@ public class ChatComponent extends VerticalLayout {
         chatLayout.setWidthFull();
         chatLayout.setFlexGrow(1, input);
         chatLayout.setFlexGrow(0, sendButton);
+        chatLayout.addClassName("chatLayout");
+        chatLayout.setJustifyContentMode(JustifyContentMode.CENTER);
         chatLayout.add(input, sendButton);
         
         //Layout vertical para el chat
         VerticalLayout verticalLayout = new VerticalLayout();
-        verticalLayout.add(list, chatLayout);
+        verticalLayout.add(list, chatLayout);        
+        verticalLayout.addClassName("verticalLayout");
         verticalLayout.setHeight("85%");
 
         // Icono de advertencia a la izquierda
@@ -89,11 +94,13 @@ public class ChatComponent extends VerticalLayout {
         avisoLayout.setHeight("15%");
         avisoLayout.setJustifyContentMode(JustifyContentMode.CENTER);
         avisoLayout.add(layoutConsejoWarning);
+        avisoLayout.addClassName("avisoLayout");
 
         //Layout vertical para el chat y el aviso
         VerticalLayout layoutVerticalConjunto = new VerticalLayout();
         layoutVerticalConjunto.add(avisoLayout, verticalLayout);
         layoutVerticalConjunto.setHeightFull();
+        layoutVerticalConjunto.addClassName("layoutChatYAviso");
         add(layoutVerticalConjunto);
     }
 

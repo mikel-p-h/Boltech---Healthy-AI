@@ -18,6 +18,15 @@
 .chatMediaQuery{
     width: 80%;
 }
+.mensajeLayout{
+    padding-left: 0%;
+}
+.warningIconLeft{
+    display: block;
+}
+.warningIconLeftPhone{
+    display: none;
+}
 
 @media screen and (max-width: 1450px) {
     .textoArriba{
@@ -43,6 +52,12 @@
 @media screen and (max-width: 550px) {
     .iconRightMediaQuery{
         display: none;
+    }
+    .warningIconLeft{
+        display: none;
+    }
+    .warningIconLeftPhone{
+        display: block;
     }
 }
 

@@ -16,32 +16,82 @@
     text-align: center;
 }
 .chatMediaQuery{
-    width: 80% !important;
+    width: 80%;
 }
 
 @media screen and (max-width: 1450px) {
     .textoArriba{
-        font-size: 16px !important;
+        font-size: 16px;
     }
     .textoAbajo{
-        font-size: 14px !important;
+        font-size: 14px;
     }
 }
 
 @media screen and (max-width: 1000px) {
     .chatMediaQuery{
-        width: 100% !important;
+        width: 100%;
     }
     .textoArriba{
-        font-size: 14px !important;
+        font-size: 14px;
     }
     .textoAbajo{
-        font-size: 12px !important;
+        font-size: 12px;
     }
 }
 
 @media screen and (max-width: 550px) {
     .iconRightMediaQuery{
-        display: none !important;
+        display: none;
+    }
+}
+
+@media screen and (max-width: 430px) {
+    .consejo{
+        padding: 2%;
+    }
+    .chatMediaQuery{
+        width: 100% !important;
+        margin: 0%;
+        padding: 0%;
+    }
+    .layoutChatYAviso{
+        padding: 0%;
+        margin: 0%;
+    }
+    .textoArriba{
+        font-size: 12px;
+    }
+    .textoAbajo{
+        font-size: 10px;
+    }
+    .chatLayout {
+        display: inline;
+        justify-content: center;
+        align-items: center;
+        padding: 0%;
+        margin: 0%;
+    }
+    :root {
+        --ancho-boton: 110px;
+    }
+    .sendButton{
+        width: var(--ancho-boton);
+        height: 50% !important;
+        font-size: 13px;
+        flex: 0 0 auto;
+        margin-left: calc(50% - var(--ancho-boton)/2);
+    }
+    .inputChat{
+        width: 100%;
+        height: 50% !important;
+        flex: 1;
+    }
+    .verticalLayout{
+        padding: 0%;
+        margin: 0%;
+    }
+    .avisoLayout{
+        padding: 0%;
     }
 }

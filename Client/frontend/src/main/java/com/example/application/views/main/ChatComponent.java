@@ -1,6 +1,7 @@
 package com.example.application.views.main;
 
 import com.vaadin.flow.component.button.Button;
+import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
@@ -39,6 +40,7 @@ public class ChatComponent extends VerticalLayout {
 
         //Botón para enviar el mensaje
         sendButton = new Button("Enviar", VaadinIcon.PAPERPLANE.create());
+        sendButton.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
         sendButton.addClickListener(clickEvent -> sendMessage(input.getValue()));
         sendButton.addClassName("sendButton");
         sendButton.setHeight("100%");

@@ -18,6 +18,15 @@
 .chatMediaQuery{
     width: 80%;
 }
+.mensajeLayout{
+    padding-left: 0%;
+}
+.warningIconLeft{
+    display: block;
+}
+.warningIconLeftPhone{
+    display: none;
+}
 
 @media screen and (max-width: 1450px) {
     .textoArriba{
@@ -44,6 +53,12 @@
     .iconRightMediaQuery{
         display: none;
     }
+    .warningIconLeft{
+        display: none;
+    }
+    .warningIconLeftPhone{
+        display: block;
+    }
 }
 
 @media screen and (max-width: 430px) {
@@ -52,6 +67,7 @@
     }
     .chatMediaQuery{
         width: 100% !important;
+        height: 90%;
         margin: 0%;
         padding: 0%;
     }
@@ -60,10 +76,10 @@
         margin: 0%;
     }
     .textoArriba{
-        font-size: 12px;
+        font-size: 14px;
     }
     .textoAbajo{
-        font-size: 10px;
+        font-size: 14px;
     }
     .chatLayout {
         display: inline;
@@ -78,14 +94,12 @@
     .sendButton{
         width: var(--ancho-boton);
         height: 50% !important;
-        font-size: 13px;
-        flex: 0 0 auto;
+        font-size: 17px;
         margin-left: calc(50% - var(--ancho-boton)/2);
     }
     .inputChat{
         width: 100%;
         height: 50% !important;
-        flex: 1;
     }
     .verticalLayout{
         padding: 0%;

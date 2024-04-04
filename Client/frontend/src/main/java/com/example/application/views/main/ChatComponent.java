@@ -1,6 +1,7 @@
 package com.example.application.views.main;
 
 import com.vaadin.flow.component.button.Button;
+import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
@@ -35,10 +36,12 @@ public class ChatComponent extends VerticalLayout {
         //Textfield para el mensaje del usuario
         input = new TextArea();
         input.addClassName("inputChat");
+        input.setPlaceholder("Escriba aquí sus sintomas...");
         input.setHeight("100%");
 
         //Botón para enviar el mensaje
         sendButton = new Button("Enviar", VaadinIcon.PAPERPLANE.create());
+        sendButton.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
         sendButton.addClickListener(clickEvent -> sendMessage(input.getValue()));
         sendButton.addClassName("sendButton");
         sendButton.setHeight("100%");
@@ -62,6 +65,13 @@ public class ChatComponent extends VerticalLayout {
         Icon warningIconLeft = VaadinIcon.WARNING.create();
         warningIconLeft.setColor("red");
         warningIconLeft.setSize("5vw");
+        warningIconLeft.addClassName("warningIconLeft");
+
+        // Icono de advertencia a la izquierda para móviles
+        Icon warningIconLeftPhone = VaadinIcon.WARNING.create();
+        warningIconLeftPhone.setColor("red");
+        warningIconLeftPhone.setSize("10vw");
+        warningIconLeftPhone.addClassName("warningIconLeftPhone");
 
         //Aviso herramienta complementaria
         Span avisoTexto = new Span("Esto es una herramienta complementaria");
@@ -73,6 +83,7 @@ public class ChatComponent extends VerticalLayout {
         VerticalLayout consejoLayout = new VerticalLayout(avisoTexto, consejoTexto);
         consejoLayout.setAlignItems(Alignment.CENTER);
         consejoLayout.setJustifyContentMode(JustifyContentMode.CENTER);
+        consejoLayout.addClassName("mensajeLayout");
 
         // Icono de advertencia a la derecha
         Icon warningIconRight = VaadinIcon.WARNING.create();
@@ -83,7 +94,7 @@ public class ChatComponent extends VerticalLayout {
         //Layout horizontal conjunto de los warnings y el aviso
         HorizontalLayout layoutConsejoWarning = new HorizontalLayout();
         layoutConsejoWarning.setWidthFull();
-        layoutConsejoWarning.add(warningIconLeft, consejoLayout, warningIconRight);
+        layoutConsejoWarning.add(warningIconLeft, warningIconLeftPhone, consejoLayout, warningIconRight);
         layoutConsejoWarning.setAlignItems(Alignment.CENTER);
         layoutConsejoWarning.setJustifyContentMode(JustifyContentMode.CENTER);
         layoutConsejoWarning.addClassName("consejo");

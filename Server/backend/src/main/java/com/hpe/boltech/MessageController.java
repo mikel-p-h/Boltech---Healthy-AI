@@ -21,6 +21,16 @@ public class MessageController {
         return content;
     }
 
+    @PostMapping("/mensaje-enviado-llama")
+    public String receiveMessageLlama(@RequestBody String message) {
+        // Enviar el mensaje a ChatGPT y obtener la respuesta
+        String response = LlamaClient.getLlamaResponse(message);
+
+        System.out.println(response);
+
+        return response;
+    }
+
     private String extractContentFromResponse(String response) {
         // Parsear la respuesta JSON
         JsonObject jsonObject = new Gson().fromJson(response, JsonObject.class);

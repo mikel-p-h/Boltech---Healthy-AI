@@ -13,7 +13,7 @@ import com.google.gson.JsonObject;
 public class ChatGPTClient {
 
     private static final String CHATGPT_API_URL = "https://api.openai.com/v1/chat/completions";
-    private static final String API_KEY = "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";
+    private static final String API_KEY = System.getenv("OPENAI_API_KEY");
 
     public static String getChatGPTResponse(String userMessage) {
         try {

@@ -1,9 +1,7 @@
 
 # Healthy AI - Boltech
-
+La rama main es solo para automatizar el despliegue del proyecto. La rama para hacer pruebas locales con docker es dockerLocal.
 ## Cómo ejecutar con Docker
-
-
 
 #### Para realizar los siguientes pasos es importante que tengas docker iniciado.
 

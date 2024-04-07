@@ -1,10 +1,12 @@
 package com.hpe.boltech;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.util.Properties;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
@@ -13,7 +15,20 @@ import com.google.gson.JsonObject;
 public class ChatGPTClient {
 
     private static final String CHATGPT_API_URL = "https://api.openai.com/v1/chat/completions";
-    private static final String API_KEY = "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";
+    private static String API_KEY;
+
+    static {
+        // Cargar la API key desde el archivo de configuración
+        try (InputStream input = ChatGPTClient.class.getClassLoader().getResourceAsStream("config.properties")) {
+            Properties prop = new Properties();
+            prop.load(input);
+            API_KEY = prop.getProperty("openai.api.key");
+        } catch (IOException ex) {
+            ex.printStackTrace();
+            // Si no se puede cargar la API key desde el archivo, muestra un error
+            throw new RuntimeException("Error al cargar la API key desde el archivo de configuración", ex);
+        }
+    }
 
     public static String getChatGPTResponse(String userMessage) {
         try {

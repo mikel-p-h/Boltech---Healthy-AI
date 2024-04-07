@@ -15,6 +15,14 @@ jobs:
         distribution: 'corretto' # See 'Supported distributions' for available options
         java-version: '17'
 
+    - name: Generate config.properties file
+      run: |
+        echo "openai.api.key=$OPENAI_API_KEY" > Server/backend/src/main/resources/config.properties
+        echo "llama.api.key=$LLAMA_API_KEY" >> Server/backend/src/main/resources/config.properties
+      env:
+        OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        LLAMA_API_KEY: ${{ secrets.LLAMA_API_KEY }}
+
     - name: Build Server with Maven
       run: mvn -B package --file Server/backend/pom.xml
       

@@ -1,6 +1,5 @@
 com/example/application/views/main/MainView.class
 com/example/application/views/main/DataService.class
 com/example/application/views/main/Message.class
-com/example/application/views/main/Accesibilidad.class
 com/example/application/Application.class
 com/example/application/views/main/ChatComponent.class

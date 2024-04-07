@@ -10,8 +10,8 @@ import com.nimbusds.jose.shaded.gson.Gson;
 
 public class DataService {
 
-    private static final String BACKEND_URL = "https://backend-boltech.fly.dev/mensaje-enviado";
-    private static final String BACKEND_URL_LLAMA = "https://backend-boltech.fly.dev/mensaje-enviado-llama";
+    private static final String BACKEND_URL = "http://boltech-backend:8081/mensaje-enviado";
+    private static final String BACKEND_URL_LLAMA = "http://boltech-backend:8081/mensaje-enviado-llama";
 
     public static String sendMessageToBackend(Message messageObj) throws IOException, InterruptedException {
         Gson gson = new Gson();

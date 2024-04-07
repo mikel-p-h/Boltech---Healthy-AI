@@ -11,6 +11,7 @@ import com.nimbusds.jose.shaded.gson.Gson;
 public class DataService {
 
     private static final String BACKEND_URL = "https://backend-boltech.fly.dev/mensaje-enviado";
+    private static final String BACKEND_URL_LLAMA = "https://backend-boltech.fly.dev/mensaje-enviado-llama";
 
     public static String sendMessageToBackend(Message messageObj) throws IOException, InterruptedException {
         Gson gson = new Gson();
@@ -18,6 +19,25 @@ public class DataService {
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create(BACKEND_URL))
+                .header("Content-Type", "application/json")
+                .POST(HttpRequest.BodyPublishers.ofString(jsonMessage))
+                .build();
+        try {
+            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+            return response.body();
+        } 
+        catch (IOException | InterruptedException e) {
+            e.printStackTrace();
+            return "Error al enviar mensaje al backend: " + e.getMessage();
+        }
+    }
+
+    public static String sendMessageToBackendLlama(Message messageObj) throws IOException, InterruptedException {
+        Gson gson = new Gson();
+        String jsonMessage = gson.toJson(messageObj);
+        HttpClient client = HttpClient.newHttpClient();
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create(BACKEND_URL_LLAMA))
                 .header("Content-Type", "application/json")
                 .POST(HttpRequest.BodyPublishers.ofString(jsonMessage))
                 .build();

@@ -19,11 +19,17 @@ import com.vaadin.flow.component.icon.Icon;
 
 public class ChatComponent extends VerticalLayout {
 
+    private String currentPage;
     private MessageList list;
     private TextArea input;
     private Button sendButton;
 
-    public ChatComponent() {
+    public void updateCurrentPage(String page) {
+        this.currentPage = page;
+    }    
+
+    public ChatComponent(String page) {
+        updateCurrentPage(page);
         setSpacing(true);
 
         //Cuadro para los chats
@@ -39,12 +45,19 @@ public class ChatComponent extends VerticalLayout {
         input.setPlaceholder("Escriba aquí sus sintomas...");
         input.setHeight("100%");
 
+        if(currentPage.equals("Llama 2")){
+            input.setReadOnly(true);
+        }
+
         //Botón para enviar el mensaje
         sendButton = new Button("Enviar", VaadinIcon.PAPERPLANE.create());
         sendButton.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
         sendButton.addClickListener(clickEvent -> sendMessage(input.getValue()));
         sendButton.addClassName("sendButton");
         sendButton.setHeight("100%");
+        if(currentPage.equals("Llama 2")){
+            sendButton.setEnabled(false);
+        }
         
         //Layout para el textfield y su botón
         HorizontalLayout chatLayout = new HorizontalLayout();
@@ -112,6 +125,12 @@ public class ChatComponent extends VerticalLayout {
         layoutVerticalConjunto.add(avisoLayout, verticalLayout);
         layoutVerticalConjunto.setHeightFull();
         layoutVerticalConjunto.addClassName("layoutChatYAviso");
+        if(currentPage.equals("Llama 2")){
+            addMessageToListGPT("¡Hola! Todavía no estoy en funcionamiento 😢, por favor utilice el modelo ChatGPT.", this.currentPage);
+        }
+        else{
+            addMessageToListGPT("¡Hola! ¿Cuáles son tus sintomas?", this.currentPage);
+        }
         add(layoutVerticalConjunto);
     }
 
@@ -120,7 +139,7 @@ public class ChatComponent extends VerticalLayout {
             return;
         }
 
-        addMessageToList(message, "YO");
+        addMessageToList(message, "Tú");
         input.clear();
 
         // Crear un objeto Message con el mensaje recibido
@@ -128,10 +147,16 @@ public class ChatComponent extends VerticalLayout {
 
         try {
             // Enviar el mensaje al backend utilizando DataService
-            String responseMessage = DataService.sendMessageToBackend(messageObj);
+            String responseMessage;
+            if(currentPage.equals("ChatGPT")){
+                responseMessage = DataService.sendMessageToBackend(messageObj);
+            }
+            else{
+                responseMessage = DataService.sendMessageToBackendLlama(messageObj);
+            }
 
             // Agregar el mensaje de respuesta a la lista
-            addMessageToListGPT(responseMessage, "ChatGPT");
+            addMessageToListGPT(responseMessage, this.currentPage);
         } catch (IOException | InterruptedException e) {
             e.printStackTrace();
             
@@ -142,7 +167,7 @@ public class ChatComponent extends VerticalLayout {
     
     private void addMessageToList(String message, String sender) {
         MessageListItem newMessage = new MessageListItem(message, Instant.now(), sender);
-        newMessage.setUserColorIndex(3);
+        newMessage.setUserColorIndex(4);
         List<MessageListItem> items = new ArrayList<>(list.getItems());
         items.add(newMessage);
         list.setItems(items);
@@ -150,7 +175,12 @@ public class ChatComponent extends VerticalLayout {
 
     private void addMessageToListGPT(String message, String sender) {
         MessageListItem newMessage = new MessageListItem(message, Instant.now(), sender);
-        newMessage.setUserColorIndex(1);
+        if(currentPage.equals("ChatGPT")){
+            newMessage.setUserColorIndex(6);
+        }
+        else{
+            newMessage.setUserColorIndex(2);
+        }
         List<MessageListItem> items = new ArrayList<>(list.getItems());
         items.add(newMessage);
         list.setItems(items);

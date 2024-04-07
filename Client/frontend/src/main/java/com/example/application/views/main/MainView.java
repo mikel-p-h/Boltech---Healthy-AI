@@ -38,7 +38,7 @@ public class MainView extends AppLayout {
         addToNavbar(toggle, title);
         
         //Generamos el chat
-        chat = new ChatComponent();
+        chat = new ChatComponent("ChatGPT");
         chat.addClassName("chatMediaQuery");
 
         //Añadimos a un horizontal layout el chat y los margenes
@@ -58,15 +58,6 @@ public class MainView extends AppLayout {
                 VaadinIcon.AMBULANCE.create()),
                 new SideNavItem("Asistente - Llama 2", "/llama", 
                 VaadinIcon.NURSE.create())
-                // ,    
-                // new SideNavItem("Products", "/products",
-                // VaadinIcon.PACKAGE.create()),
-                // new SideNavItem("Documents", "/documents",
-                // VaadinIcon.RECORDS.create()),
-                // new SideNavItem("Tasks", "/tasks", 
-                // VaadinIcon.LIST.create()),
-                // new SideNavItem("Analytics", "/analytics",
-                // VaadinIcon.CHART.create())
                 );
         return sideNav;
     }
